@@ -1,0 +1,31 @@
+{
+  "name": "tiap-server",
+  "version": "1.0.0",
+  "description": "TIAP is a MERN stack warehouse management exception handling application that integrates with WMS (Warehouse Management System) data to create, track, report, visualize, and manage product exceptions based on root causes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naimyasirozcan/tiap-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/naimyasirozcan/tiap-server/issues"
+  },
+  "homepage": "https://github.com/naimyasirozcan/tiap-server#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.0.0",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {}
+}
