@@ -12,5 +12,17 @@ const app = express()
 const config = require("./config")
 config(app)
 
-// Endpoints/Routes:
-const indexRouter = require(express.Router)
+// *** Routes ***
+// const indexRouter = require("./routes/index.routes")
+// app.use(indexRouter)
+
+// *** Error Handlers ***
+const errorHandlers = require("./errors")
+errorHandlers(app)
+
+// *** Server Port Definition & HTTP Server Creation ***
+const PORT = process.env.PORT || 5005
+app.listen(PORT, () => {
+    console.log(`Server active. Listening requests on ${PORT}`)
+})
+
