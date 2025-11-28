@@ -6,11 +6,11 @@ try {
 
 // *** Database Connection ***
 const express = require("express")
-const server = express()
+const app = express()
 
 // *** Config (Requests will pass through these middlewares) ***
-require("./config")
+const config = require("./config")
+config(app)
 
 // Endpoints/Routes:
-
-
+const indexRouter = require(express.Router)

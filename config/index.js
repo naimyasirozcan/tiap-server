@@ -2,11 +2,11 @@ const express = require("express")
 const logger = require("morgan")
 const cors = require("cors")
 
-function config(server){
-    server.use(logger("dev")) //
-    server.use(cors({origin: process.env.origin}))
-    server.use(express.urlencoded({extended: false}))
-    server.use(express.json())
+function config(app){
+    app.use(logger("dev")) //
+    app.use(cors({origin: process.env.origin}))
+    app.use(express.urlencoded({extended: false}))
+    app.use(express.json())
 }
 
 module.exports = config
