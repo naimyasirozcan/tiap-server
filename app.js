@@ -15,26 +15,21 @@ const app = express()
 const config = require("./config")
 config(app)
 
-// *** Routes ***
-app.get("/", async (req, res) => {
+// *** API Page ***
+app.get("/", async (req, res, next) => {
     try{
-        const exceptions = await TaskCollection.find({})
-        res.status(200).json(exceptions)
+        res.status(200).send("You've connected to the api.")
     } catch (error) {
         console.log(error)
     }
 })
-// const indexRouter = require("./routes/index.routes")
-// app.use(indexRouter)
+
+// *** Routes ***
+const indexRouter = require("./routes/index.routes")
+app.use("/api", indexRouter)
 
 // *** Error Handlers ***
 const errorHandlers = require("./errors")
-const Employee = require("./models/Employee.model")
-const Location = require("./models/Location.model")
-const SKU = require("./models/SKU.model")
-const Task = require("./models/Task.model")
-const TaskCollection = require("./models/TaskCollection.model")
-const Exception = require("./models/Exception.model")
 errorHandlers(app)
 
 // *** Server Port Definition & HTTP Server Creation ***
@@ -42,4 +37,3 @@ const PORT = process.env.PORT || 5005
 app.listen(PORT, () => {
     console.log(`Server active. Listening requests on ${PORT}`)
 })
-

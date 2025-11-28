@@ -41,7 +41,6 @@ const taskCollectionSchema = new Schema(
             type: Date,
             default: null
         }
-
     },
     {
         timestamps: true
