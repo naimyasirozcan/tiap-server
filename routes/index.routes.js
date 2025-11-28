@@ -4,16 +4,18 @@ router.get("/", (req, res, next) => {
     res.json({ message: "Server received a request." })
 })
 
-// *** CRUD Routes (Main Dynamic Data) ***
+// *** Authorization ***
 
 const authRouter = require("./auth.routes")
 router.use("/auth", authRouter)
+
+// *** CRUD Routes (Main Dynamic Data) ***
 
 const exceptionRouter = require("./exception.routes")
 router.use("/exceptions", exceptionRouter)
 
 const rootCauseRouter = require("./root-cause.routes")
-router.use("/exceptions", rootCauseRouter)
+router.use("/root-causes", rootCauseRouter)
 
 const employeeRouter = require("./employee.routes")
 router.use("/employees", employeeRouter)

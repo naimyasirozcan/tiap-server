@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose")
-const { RECEIEVED_AS, TASK_TYPES, ZONES, DEPARTMENTS, EXCEPTION_TYPES, EXCEPTION_STATUS } = require("../constants/enums")
+const { RECEIEVED_AS, TASK_TYPES, ZONES, DEPARTMENTS, EXCEPTION_TYPES, EXCEPTION_STATUS, EXCEPTION_REGEX } = require("../constants/enums")
 
 
 const exceptionSchema = new Schema(
@@ -114,6 +114,6 @@ const exceptionSchema = new Schema(
     }
 )
 
-const Exception = model("Employee", exceptionSchema)
+const Exception = model("Exception", exceptionSchema)
 
 module.exports = Exception
