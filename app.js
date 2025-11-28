@@ -5,6 +5,9 @@ try {
 }
 
 // *** Database Connection ***
+require("./db")
+
+// *** Create Server ***
 const express = require("express")
 const app = express()
 
