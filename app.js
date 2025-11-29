@@ -15,7 +15,7 @@ const app = express()
 const config = require("./config")
 config(app)
 
-// *** API Page ***
+// *** API Intro Page ***
 app.get("/", async (req, res, next) => {
     try{
         res.status(200).send("You've connected to the api.")

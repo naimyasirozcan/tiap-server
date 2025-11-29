@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
-const verifyToken = require("../middlewares/auth.middlewares.js")
+const { verifyToken } = require("../middlewares/auth.middlewares.js")
 const { PASSWORD_REGEX } = require("../constants/enums.js")
 const Employee = require("../models/Employee.model")
 
@@ -19,7 +19,6 @@ router.post("/signup", async (req, res, next) => {
     
     const { name, department, title, email, password } = req.body
     
-    // New Employee Data Integrity/Correction Check: 
     if(!name ||!department||!title || !email ||!password ){
         res.status(400).json({errorMessage: "Please fill all mandatory fields."})
         return
@@ -54,8 +53,59 @@ router.post("/signup", async (req, res, next) => {
         next(error)
     }
     
-    // *** Log In ***
     
 })
+
+// *** Log In ***
+    router.post("/login", async (req, res, next) => {
+
+        console.log(req.body)
+
+        const { email, password } = req.body
+
+        if(!email || !password){
+            res.status(400).json({errorMessage: "Email and password needed."})
+            return
+        }
+
+        try {
+
+            const employee = await Employee.findOne({email: email})
+
+            if(!employee){
+                res.status(400).json({errorMessage: 'User not found.'})
+                console.log("Login attempt with non existing email.")
+                return
+            }
+
+            const isPassworMatch = await bcrypt.compare(password, employee.password)
+
+            console.log(isPassworMatch)
+
+            if(!isPassworMatch){
+                res.status(401).json({errorMessage: "Wrong password!!!"})
+            }
+
+            const payload = {
+                role: employee.role,
+                email: employee.email,
+                id: employee.id
+            }
+
+            const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {algorithm: "HS256", expiresIn: "7d"})
+
+            res.status(200).json({message: "Token created successfully.", authToken: authToken})
+
+        } catch (error) {
+            next(error)
+        }
+    })
+
+    // *** Verification ***
+    router.get("/verify", verifyToken, (req, res) => {
+        res.status(200).send("User authorized.")
+    })
+
+
 
 module.exports = router
