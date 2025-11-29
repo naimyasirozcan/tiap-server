@@ -4,7 +4,7 @@ try {
     console.warn(`${error}, .env not found. Local enviroment values will be used.`)
 }
 
-// *** Database Connection ***
+// *** Database ***
 require("./db")
 
 // *** Create Server ***

@@ -2,7 +2,7 @@ const router = require("express").Router()
 const { verifyAdmin, verifyToken } = require("../middlewares/auth.middlewares")
 
 router.get("/", verifyToken, (req, res, next) => {
-    res.status(200).json({message: "Test OK."})
+    res.status(200).json({ message: "Test OK." })
     console.log("received")
 })
 
@@ -15,8 +15,8 @@ router.use("/auth", authRouter)
 const exceptionRouter = require("./exception.routes")
 router.use("/exceptions", exceptionRouter)
 
-// const rootCauseRouter = require("./root-cause.routes")
-// router.use("/root-causes", rootCauseRouter)
+const rootCauseRouter = require("./root-cause.routes")
+router.use("/root-causes", rootCauseRouter)
 
 // const employeeRouter = require("./employee.routes")
 // router.use("/employees", employeeRouter)

@@ -28,7 +28,7 @@ router.post("/", verifyToken, verifyAdmin, async (req, res, next) => {
 // *** Update an Exception ***
 router.put("/:_id", verifyToken, verifyAdmin, async (req, res, next) => {
     try {
-        const updatedExceptionLog = await Exception.findByIdAndUpdate(req.params._id, {...req.body})
+        const updatedExceptionLog = await Exception.findByIdAndUpdate(req.params._id, {...req.body}, { new: true })
         res.status(200).json(updatedExceptionLog)
     } catch (error) {
         next(error)
@@ -39,6 +39,17 @@ router.put("/:_id", verifyToken, verifyAdmin, async (req, res, next) => {
 router.get("/:_id", verifyToken, async (req, res, next) => {
     try {
         const exception = await Exception.findById(req.params._id)
+        .populate('order')
+            .populate('sku')
+            .populate('taskCollection')
+            .populate('task')
+            .populate('location')
+            .populate('rootcause')
+            .populate('replacedFrom')
+            .populate('exceptionLocation')
+            .populate('foundBy')
+            .populate('errorBy')
+            .populate('handledBy')
         res.status(200).json(exception)
     } catch (error) {
         next(error)
