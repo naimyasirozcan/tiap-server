@@ -1,11 +1,11 @@
 function handleErrors(app) {
 
-    // no matching url:
+    // *** No Matching URL ***
     app.use((req, res) => {
         res.status(404).json({ errorMessage: "There is no point you can access by this URL." })
     })
 
-    // url matches but error occurred:
+    // *** Any Other 
     app.use((error, req, res) => {
         console.log(`Error occured while processing the request.
             METHOD: ${req.method}

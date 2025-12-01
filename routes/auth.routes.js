@@ -109,19 +109,19 @@ router.post("/login", async (req, res, next) => {
     }
 })
 
-// *** Login Verification Test ***
+// *** Login Verification ***
 router.get("/verify", verifyToken, (req, res) => {
     res.status(200).send(`Access accepted. | User: ${req.payload.email}`)
     console.log(`Access accepted. | User: ${req.payload.email}`)
 })
 
-// *** Admin Verification Test ***
+// *** Admin Verification ***
 router.get("/verify/admin", verifyToken, verifyAdmin, (req, res) => {
     res.status(200).send(`Access accepted. | Admin: ${req.payload.email}`)
     console.log(`Access accepted. | Admin: ${req.payload.email}`)
 })
 
-// *** Super Admin Verification Test ***
+// *** Super Admin Verification ***
 router.get("/verify/superAdmin", verifyToken, verifySuperAdmin, (req, res) => {
     res.status(200).send(`Access accepted. | Super Admin: ${req.payload.email}`)
     console.log(`Access accepted. | Admin: ${req.payload.email}`)
