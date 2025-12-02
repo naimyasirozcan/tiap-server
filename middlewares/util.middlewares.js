@@ -45,7 +45,7 @@ async function generateLogNumber(logType) {
 }
 
 // *** Multer ***
-const multer = require("multer")
-const upload = multer({ dest: "uploads/" })
 
-module.exports = { generateLogNumber, upload }
+// const upload = multer({ dest: "uploads/" })
+
+module.exports = { generateLogNumber }

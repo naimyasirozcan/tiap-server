@@ -1,6 +1,6 @@
 const router = require("express").Router()
 const { verifyToken, verifyAdmin } = require("../middlewares/auth.middlewares")
-// const { generateLogNumber } = require("../middlewares/util.middlewares")
+const { generateLogNumber } = require("../middlewares/util.middlewares")
 const Exception = require("../models/Exception.model")
 
 // *** Get All Exceptions (Also by Search Params) ***
@@ -16,9 +16,9 @@ router.get("/", verifyToken, async (req, res, next) => {
 // *** Create a New Exception ***
 router.post("/", verifyToken, verifyAdmin, async (req, res, next) => {
     try {
-        // const exceptionLogNo = await generateLogNumber("exception")
-        // const newException = { ...req.body, no: exceptionLogNo }
-        // await Exception.create(newException)
+        const exceptionLogNo = await generateLogNumber("exception")
+        const newException = { ...req.body, no: exceptionLogNo }
+        await Exception.create(newException)
         res.status(201).json({ message: "New exception log created successfully." })
     } catch (error) {
         next(error)
