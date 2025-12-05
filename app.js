@@ -1,9 +1,9 @@
-//try {
-//    process.loadEnvFile()
-//} catch(error){
-//    console.warn(`.env not found. Local enviroment values will be used.`)
-//}
-require("dotenv").config()
+try {
+    process.loadEnvFile()
+} catch(error){
+    console.warn(`.env not found. Local enviroment values will be used.`)
+}
+//require("dotenv").config()
 
 // *** Database ***
 require("./db")
